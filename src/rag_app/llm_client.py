@@ -1,9 +1,11 @@
 import json
 import os
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 OLLAMA_URL = os.getenv("OLLAMA_API_URL", "http://localhost:11434")
-
 def generate(prompt, model="llama3"):
     res = requests.post(
         f"{OLLAMA_URL}/api/generate",
@@ -30,6 +32,8 @@ def chat(messages, model="llama3"):
 
 
 def stream_generate(prompt, model="llama3"):
+    print(os.getenv("OLLAMA_API_URL"))
+
     res = requests.post(
         f"{OLLAMA_URL}/api/generate",
         json={
