@@ -1,4 +1,4 @@
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from rag_app.llm_client import generate, stream_generate
@@ -8,7 +8,10 @@ CHROMA_PATH = "vectordb"
 
 def _build_vectordb():
     embeddings = HuggingFaceEmbeddings()
-    return Chroma(persist_directory=CHROMA_PATH, embedding_function=embeddings)
+    return Chroma(
+        persist_directory=CHROMA_PATH,
+        embedding_function=embeddings
+    )
 
 
 def _retrieve_documents(vectordb, question, selected_files=None):
@@ -46,7 +49,11 @@ def ask_question(question, selected_files=None):
 
     return {
         "answer": answer,
-        "sources": list({doc.metadata.get("file_name") for doc in docs if doc.metadata.get("file_name")}),
+        "sources": list({
+            doc.metadata.get("file_name")
+            for doc in docs
+            if doc.metadata.get("file_name")
+        }),
     }
 
 

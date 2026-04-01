@@ -30,6 +30,7 @@ uv run python -m uvicorn main:app --reload
 - `src/rag_app/ingest.py` - document ingestion logic
 - `src/rag_app/query.py` - query helpers
 - `src/rag_app/llm_client.py` - LLM client utilities
+- `src/file_registry.py` - Maintains the hash for the files
 
 ## Notes
 

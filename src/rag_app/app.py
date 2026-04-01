@@ -6,8 +6,8 @@ import shutil
 import sqlite3
 from datetime import datetime, timezone
 from threading import Lock
-
-from langchain_community.vectorstores import Chroma
+from langchain_chroma import Chroma
+# from langchain_community.vectorstores import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 
 from rag_app.ingest import ingest_file
@@ -18,7 +18,12 @@ from rag_app.file_registry import file_exists, register_file, remove_file, clear
 from typing import List
 import time
 
+
+
 app = FastAPI()
+print("RAG API starting up...")
+from dotenv import load_dotenv
+load_dotenv()
 
 DOCS_PATH = "documents"
 os.makedirs(DOCS_PATH, exist_ok=True)
